@@ -25,12 +25,232 @@
             <script>
             function buildChart(){
 
-            var dataset =  d3.csv("/data/bullrun.csv", function(error, data){
-                data.forEach(function(d){
-                  console.log(d.date);
-                  d.date = Date.parse(d.date);
-                  d.goring = +d.goring;
-                  d.injury = +d.injury;
+            // var dataset =  d3.csv("/data/bullrun.csv", function(error, data){
+            //     data.forEach(function(d){
+            //       console.log(d.date);
+            //       d.date = Date.parse(d.date);
+            //       d.goring = +d.goring;
+            //       d.injury = +d.injury;
+
+              var data = [{
+                "goring": "9",
+                "year": "1980"
+              }, {
+                "goring": "5",
+                "year": "1981"
+              }, {
+                "goring": "5",
+                "year": "1982"
+              }, {
+                "goring": "4",
+                "year": "1983"
+              }, {
+                "goring": "2",
+                "year": "1984"
+              }, {
+                "goring": "9",
+                "year": "1985"
+              }, {
+                "goring": "6",
+                "year": "1986"
+              }, {
+                "goring": "7",
+                "year": "1987"
+              }, {
+                "goring": "7",
+                "year": "1988"
+              }, {
+                "goring": "5",
+                "year": "1989"
+              }, {
+                "goring": "6",
+                "year": "1990"
+              }, {
+                "goring": "7",
+                "year": "1991"
+              }, {
+                "goring": "5",
+                "year": "1992"
+              }, {
+                "goring": "8",
+                "year": "1993"
+              }, {
+                "goring": "12",
+                "year": "1994"
+              }, {
+                "goring": "5",
+                "year": "1995"
+              }, {
+                "goring": "6",
+                "year": "1996"
+              }, {
+                "goring": "5",
+                "year": "1997"
+              }, {
+                "goring": "3",
+                "year": "1998"
+              }, {
+                "goring": "8",
+                "year": "1999"
+              }, {
+                "goring": "9",
+                "year": "2000"
+              }, {
+                "goring": "12",
+                "year": "2001"
+              }, {
+                "goring": "12",
+                "year": "2002"
+              }, {
+                "goring": "11",
+                "year": "2003"
+              }, {
+                "goring": "16",
+                "year": "2004"
+              }, {
+                "goring": "8",
+                "year": "2005"
+              }, {
+                "goring": "5",
+                "year": "2006"
+              }, {
+                "goring": "11",
+                "year": "2007"
+              }, {
+                "goring": "4",
+                "year": "2008"
+              }, {
+                "goring": "10",
+                "year": "2009"
+              }, {
+                "goring": "9",
+                "year": "2010"
+              }, {
+                "goring": "5",
+                "year": "2011"
+              }, {
+                "goring": "4",
+                "year": "2012"
+              }, {
+                "goring": "6",
+                "year": "2013"
+              }, {
+                "goring": "8",
+                "year": "2014"
+              }, {
+                "goring": "10",
+                "year": "2015"
+              }];
+
+              var data2 = [{
+                "injury": "23",
+                "year": "1980"
+              }, {
+                "injury": "21",
+                "year": "1981"
+              }, {
+                "injury": "22",
+                "year": "1982"
+              }, {
+                "injury": "32",
+                "year": "1983"
+              }, {
+                "injury": "31",
+                "year": "1984"
+              }, {
+                "injury": "47",
+                "year": "1985"
+              }, {
+                "injury": "26",
+                "year": "1986"
+              }, {
+                "injury": "24",
+                "year": "1987"
+              }, {
+                "injury": "22",
+                "year": "1988"
+              }, {
+                "injury": "23",
+                "year": "1989"
+              }, {
+                "injury": "38",
+                "year": "1990"
+              }, {
+                "injury": "38",
+                "year": "1991"
+              }, {
+                "injury": "31",
+                "year": "1992"
+              }, {
+                "injury": "52",
+                "year": "1993"
+              }, {
+                "injury": "36",
+                "year": "1994"
+              }, {
+                "injury": "38",
+                "year": "1995"
+              }, {
+                "injury": "35",
+                "year": "1996"
+              }, {
+                "injury": "32",
+                "year": "1997"
+              }, {
+                "injury": "24",
+                "year": "1998"
+              }, {
+                "injury": "37",
+                "year": "1999"
+              }, {
+                "injury": "37",
+                "year": "2000"
+              }, {
+                "injury": "29",
+                "year": "2001"
+              }, {
+                "injury": "27",
+                "year": "2002"
+              }, {
+                "injury": "46",
+                "year": "2003"
+              }, {
+                "injury": "41",
+                "year": "2004"
+              }, {
+                "injury": "25",
+                "year": "2005"
+              }, {
+                "injury": "22",
+                "year": "2006"
+              }, {
+                "injury": "41",
+                "year": "2007"
+              }, {
+                "injury": "42",
+                "year": "2008"
+              }, {
+                "injury": "38",
+                "year": "2009"
+              }, {
+                "injury": "28",
+                "year": "2010"
+              }, {
+                "injury": "38",
+                "year": "2011"
+              }, {
+                "injury": "34",
+                "year": "2012"
+              }, {
+                "injury": "44",
+                "year": "2013"
+              }, {
+                "injury": "35",
+                "year": "2014"
+              }, {
+                "injury": "27",
+                "year": "2015"
+              }];
 
               var vis = d3.select('#visualization'),
               WIDTH = 1000,
@@ -64,7 +284,7 @@
 
               var lineGen = d3.svg.line()
                 .x(function(d) {
-                    return xScale(d.date);
+                    return xScale(d.year);
                     })
                 .y(function(d) {
                     return yScale(d.goring);
@@ -72,22 +292,17 @@
                 .interpolate("basis");
 
               vis.append('svg:path')
-                        .attr('d', lineGen(dataset))
+                        .attr('d', lineGen(data))
                         .attr('stroke', 'green')
                         .attr('stroke-width', 2)
                         .attr('fill', 'none');
               vis.append('svg:path')
-                        .attr('d', lineGen(dataset))
+                        .attr('d', lineGen(data2))
                         .attr('stroke', 'blue')
                         .attr('stroke-width', 2)
                         .attr('fill', 'none');
 
-            });
-
-              console.log("hello");
-
-              });
-            };
+            }
 
             buildChart();
 
