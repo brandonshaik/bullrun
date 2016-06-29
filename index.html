@@ -9,7 +9,7 @@
             shape-rendering: crispEdges;
         }
         .axis text {
-            font-family: Lato;
+            font-family: helvetica;
             font-size: 13px;
         }
     </style>
@@ -256,7 +256,8 @@
                         xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([1980, 2015]),
                         yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 52]),
                         xAxis = d3.svg.axis()
-                        .scale(xScale),
+                        .scale(xScale)
+                        .tickFormat(d3.format("d")),
                         yAxis = d3.svg.axis()
                         .scale(yScale)
                         .orient("left");
@@ -265,10 +266,25 @@
                         .attr("class", "x axis")
                         .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
                         .call(xAxis);
+
+                    vis.append("text")
+                        .attr("transform", "translate(" + (WIDTH / 2) + "," + (HEIGHT + MARGINS.bottom) + ")")
+                        .style("text-anchor","middle")
+                        .text("Year");
+
                     vis.append("svg:g")
                         .attr("class", "y axis")
                         .attr("transform", "translate(" + (MARGINS.left) + ",0)")
                         .call(yAxis);
+
+                    vis.append("text")
+                        .attr("transform", "rotate(-90)")
+                        .attr("y",0 - MARGINS.left)
+                        .attr("x",0 - (HEIGHT / 2))
+                        .attr("dy", ".25em")
+                        .style("text-anchor", "middle")
+                        .text("Incidents");
+
                     var lineGen = d3.svg.line()
                         .x(function(d) {
                             return xScale(d.year);
@@ -277,6 +293,7 @@
                             return yScale(d.goring);
                         })
                         .interpolate("basis");
+
                     vis.append('svg:path')
                         .attr('d', lineGen(data))
                         .attr('stroke', 'red')
