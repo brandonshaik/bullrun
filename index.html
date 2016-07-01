@@ -20,12 +20,12 @@
 
     <div class="container">
 
-            <svg id="visualisation" width="1000" height="500"></svg>
-            <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-            <script>
+          <svg id="visualisation" width="1000" height="500"></svg>
+          <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+          <script>
 
-                function buildChart() {
-                    var data = [{
+            function buildChart() {
+               var data = [{
                       "goring": "9",
                       "year": "1980"
                     }, {
@@ -291,8 +291,7 @@
                         })
                         .y(function(d) {
                             return yScale(d.goring);
-                        })
-                        .interpolate("basis");
+                        });
 
                     vis.append('svg:path')
                         .attr('d', lineGen(data))
